@@ -1,0 +1,18 @@
+---
+keys:
+  - &builder01 age18hgu9p8q09qp0xqtcmf3vvyskdqj0xz58ajcyc92yhn3vwqmpvessgj8fu
+  - &dns01 age1xdqvvwp7yejrgf6vcv5wm3hrudegm2vzg3m853hadk7y5j0cnagqrc26mk
+  - &dns02 age1dhjk75nu4arg0hpaqj0mtu2hwn0wuakmvy6283e05yxtz4vyrefsspjnfu
+  - &tsr01 age1swj0vsguqtxj5xc8q2m5uaks2tkuj20f2pl95fd8kl8hnsg2pq7smrcj2g
+creation_rules:
+  - path_regex: dns\.yaml$
+    key_groups:
+      - age:
+          - *builder01
+          - *dns01
+          - *dns02
+  - path_regex: tailscale\.yaml$
+    key_groups:
+      - age:
+          - *builder01
+          - *tsr01
