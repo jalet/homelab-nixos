@@ -157,6 +157,7 @@
           misc = [
             "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.apple.txt"
             "/jarsater.lan/"
+            "/xethub.hf.co/"
           ];
         };
 
