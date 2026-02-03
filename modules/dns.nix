@@ -25,6 +25,7 @@
     jarsater.lan
     xethub.hf.co
     cas-server.xethub.hf.co
+    transfer.xethub.hf.co
   '';
 
   sops.secrets.powerdns = {
