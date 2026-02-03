@@ -23,9 +23,8 @@
 
   environment.etc."blocky/allowlist.txt".text = ''
     jarsater.lan
-    xethub.hf.co
-    cas-server.xethub.hf.co
-    transfer.xethub.hf.co
+    /.*\.xethub\.hf\.co$/
+    /^xethub\.hf\.co$/
   '';
 
   sops.secrets.powerdns = {
