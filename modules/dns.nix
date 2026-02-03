@@ -159,6 +159,12 @@
             "/\\.jarsater.lan/"
             "/\\.xethub.hf.co/"
           ];
+          ads = [
+            "/\\.xethub.hf.co/"
+          ];
+          security = [
+            "/\\.xethub.hf.co/"
+          ];
         };
 
         denylists = {
