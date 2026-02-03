@@ -21,6 +21,12 @@
     EDITOR = "nvim";
   };
 
+  environment.etc."blocky/allowlist.txt".text = ''
+    jarsater.lan
+    xethub.hf.co
+    cas-server.xethub.hf.co
+  '';
+
   sops.secrets.powerdns = {
     sopsFile = ./dns.yaml;
     format = "yaml";
@@ -156,15 +162,10 @@
         allowlists = {
           misc = [
             "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.apple.txt"
-            "/\\.jarsater.lan/"
-            "/\\.xethub.hf.co/"
+            "/etc/blocky/allowlist.txt"
           ];
-          ads = [
-            "/\\.xethub.hf.co/"
-          ];
-          security = [
-            "/\\.xethub.hf.co/"
-          ];
+          ads = [ "/etc/blocky/allowlist.txt" ];
+          security = [ "/etc/blocky/allowlist.txt" ];
         };
 
         denylists = {
