@@ -11,6 +11,11 @@
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];
 
+  proxmoxLXC = {
+    manageNetwork = false;
+    privileged = false;
+  };
+
   networking = {
     firewall.allowedTCPPorts = [22 53 5353 8080 8081];
     firewall.allowedUDPPorts = [53 5353];

@@ -10,6 +10,11 @@
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
   ];
 
+  proxmoxLXC = {
+    manageNetwork = false;
+    privileged = false;
+  };
+
   networking = {
     firewall.trustedInterfaces = [ "tailscale0" ];
     firewall.allowedTCPPorts = [22 443];

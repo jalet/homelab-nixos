@@ -51,6 +51,20 @@
         ];
       };
 
+    mkForgejoRunner = { name, }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+
+        modules = [
+          sops-nix.nixosModules.sops
+          ./modules/common.nix
+          ./modules/forgejo-runner.nix
+          {
+            networking.hostName = name;
+          }
+        ];
+      };
+
     mkDns = { name, lastOctet, }:
       nixpkgs.lib.nixosSystem {
         inherit system;
@@ -100,6 +114,9 @@
       dns02 = mkDns {
         name = "dns02";
         lastOctet = 253;
+      };
+      builder02 = mkForgejoRunner {
+        name = "builder02";
       };
     };
   };

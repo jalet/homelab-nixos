@@ -6,11 +6,6 @@
   system.stateVersion = "25.05";
   time.timeZone = "Europe/Stockholm";
 
-  proxmoxLXC = {
-    manageNetwork = false;
-    privileged = false;
-  };
-
   # --- Nix settings ---
   nix.settings = {
     sandbox = false;

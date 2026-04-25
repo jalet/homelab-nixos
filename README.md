@@ -13,6 +13,7 @@ This repository manages infrastructure services using NixOS flakes with SOPS-enc
 | `tsr01` | Tailscale subnet router | - |
 | `dns01` | Primary DNS server | 172.16.0.254 |
 | `dns02` | Secondary DNS server | 172.16.0.253 |
+| `builder02` | Forgejo Actions runner (Codeberg) | DHCP on `vmbr0` (VM) |
 
 ## Services
 
