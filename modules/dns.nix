@@ -100,12 +100,6 @@
         path = "/metrics";
       };
 
-      queryLog = {
-        type = "postgresql";
-        target = "postgres://blocky:yyrdkz2iECp4PkTjWZXrL2RA48Rhe7mJ@172.16.99.2:5432/blocky";
-        logRetentionDays = 90;
-      };
-
       log = {
         level = "info";
         format = "json";

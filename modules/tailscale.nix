@@ -11,6 +11,7 @@
   ];
 
   networking = {
+    firewall.trustedInterfaces = [ "tailscale0" ];
     firewall.allowedTCPPorts = [22 443];
     firewall.allowedUDPPorts = [];
   };
@@ -21,9 +22,9 @@
   services.tailscale = {
     enable = true;
     authKeyFile = config.sops.secrets.authkey.path;
-    extraSetFlags = [
-      "--advertise-routes=172.16.0.0/24"
-    ];
     useRoutingFeatures = "server";
+    extraSetFlags = [
+      "--advertise-routes=172.16.0.0/24,10.10.99.0/24"
+    ];
   };
 }

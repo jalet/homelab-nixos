@@ -17,7 +17,7 @@
   } @ inputs: let
     system = "x86_64-linux";
 
-    mkTailscale = {name}:
+    mkTailscale = { name, lastOctet, }:
       nixpkgs.lib.nixosSystem {
         inherit system;
 
@@ -27,14 +27,31 @@
           ./modules/tailscale.nix
           {
             networking.hostName = name;
+            networking.defaultGateway.address = "10.10.99.1";
+            networking.defaultGateway.interface = "eth1";
+            networking.interfaces = {
+              eth0 = {
+                ipv4.addresses = [
+                  {
+                    address = "172.16.0.${toString lastOctet}";
+                    prefixLength = 24;
+                  }
+                ];
+              };
+              eth1 = {
+                ipv4.addresses = [
+                  {
+                    address = "10.10.99.${toString lastOctet}";
+                    prefixLength = 24;
+                  }
+                ];
+              };
+            };
           }
         ];
       };
 
-    mkDns = {
-      name,
-      lastOctet,
-    }:
+    mkDns = { name, lastOctet, }:
       nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
@@ -47,13 +64,21 @@
           ./modules/dns.nix
           {
             networking.hostName = name;
-            networking.defaultGateway.address = "172.16.0.1";
-            networking.defaultGateway.interface = "eth0";
+            networking.defaultGateway.address = "10.10.99.1";
+            networking.defaultGateway.interface = "eth1";
             networking.interfaces = {
               eth0 = {
                 ipv4.addresses = [
                   {
                     address = "172.16.0.${toString lastOctet}";
+                    prefixLength = 24;
+                  }
+                ];
+              };
+              eth1 = {
+                ipv4.addresses = [
+                  {
+                    address = "10.10.99.${toString lastOctet}";
                     prefixLength = 24;
                   }
                 ];
@@ -64,7 +89,10 @@
       };
   in {
     nixosConfigurations = {
-      tsr01 = mkTailscale {name = "tsr01";};
+      tsr01 = mkTailscale {
+        name = "tsr01";
+        lastOctet = 9;
+      };
       dns01 = mkDns {
         name = "dns01";
         lastOctet = 254;
