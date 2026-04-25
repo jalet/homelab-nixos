@@ -14,15 +14,11 @@
     memory = 4096;
   };
 
+  services.qemuGuest.enable = true;
+
   networking = {
-    useNetworkd = true;
     firewall.allowedTCPPorts = [22];
     firewall.allowedUDPPorts = [];
-  };
-
-  systemd.network.networks."10-wan" = {
-    matchConfig.Name = "en* eth*";
-    networkConfig.DHCP = "ipv4";
   };
 
   virtualisation.docker = {

@@ -1,12 +1,10 @@
 ---
 keys:
   - &builder01 age18hgu9p8q09qp0xqtcmf3vvyskdqj0xz58ajcyc92yhn3vwqmpvessgj8fu
+  - &builder02 age1j7pja3qgqvk6ncs84mal36zxnmm05c88uwycw867ktud6rzdh3msw46hny
   - &dns01 age1xdqvvwp7yejrgf6vcv5wm3hrudegm2vzg3m853hadk7y5j0cnagqrc26mk
   - &dns02 age1dhjk75nu4arg0hpaqj0mtu2hwn0wuakmvy6283e05yxtz4vyrefsspjnfu
   - &tsr01 age1swj0vsguqtxj5xc8q2m5uaks2tkuj20f2pl95fd8kl8hnsg2pq7smrcj2g
-  # Replace after first boot of builder02:
-  # ssh root@builder02 cat /etc/ssh/ssh_host_ed25519_key.pub | nix run nixpkgs#ssh-to-age
-  - &builder02 REPLACE_ME_WITH_BUILDER02_AGE_KEY
 creation_rules:
   - path_regex: dns\.yaml$
     key_groups:
