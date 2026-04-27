@@ -11,10 +11,11 @@
 
   proxmox.qemuConf = {
     cores = 4;
-    memory = 4096;
+    memory = 8192;
   };
 
   services.qemuGuest.enable = true;
+  zramSwap.enable = true;
 
   networking = {
     firewall.allowedTCPPorts = [22];
