@@ -17,6 +17,13 @@
   services.qemuGuest.enable = true;
   zramSwap.enable = true;
 
+  boot.loader.grub.device = lib.mkForce "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1";
+
+  fileSystems."/var/lib/docker" = {
+    device = "/dev/disk/by-label/docker";
+    fsType = "ext4";
+  };
+
   networking = {
     firewall.allowedTCPPorts = [22];
     firewall.allowedUDPPorts = [];
